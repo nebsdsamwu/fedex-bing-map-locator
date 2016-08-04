@@ -13,13 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-// for BingMapWPFAppication
+// for BingMapWPFApplication
 using System.Globalization;
 using Microsoft.Maps.MapControl.WPF;
 using Microsoft.Maps.MapControl.WPF.Design;
 
 
-namespace BingMapWPFAppication
+namespace BingMapWPFApplication
 {
     /// <summary>
     /// Interaction logic for SwitchMapViews.xaml

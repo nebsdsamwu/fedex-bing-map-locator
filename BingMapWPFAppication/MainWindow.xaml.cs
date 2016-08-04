@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 // my Map 
 using Microsoft.Maps.MapControl.WPF;
 
-namespace BingMapWPFAppication
+namespace BingMapWPFApplication
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

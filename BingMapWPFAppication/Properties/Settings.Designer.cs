@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BingMapWPFAppication.Properties
+namespace BingMapWPFApplication.Properties
 {
 
 

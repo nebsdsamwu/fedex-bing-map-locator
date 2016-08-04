@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingMapWPFApplication", "BingMapWPFAppication\BingMapWPFApplication.csproj", "{3687A9C0-953C-42CD-88AB-5BCCB27D6755}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BingMapWPFApplication", "BingMapWPFApplication\BingMapWPFApplication.csproj", "{3687A9C0-953C-42CD-88AB-5BCCB27D6755}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationsSearchWebServiceClient", "BingMapWPFAppication\FedExLocationClient\LocationsSearchWebServiceClient.csproj", "{D4B129A7-0371-4038-A7C5-F47BA49B9223}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocationsSearchWebServiceClient", "BingMapWPFApplication\FedExLocationClient\LocationsSearchWebServiceClient.csproj", "{D4B129A7-0371-4038-A7C5-F47BA49B9223}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

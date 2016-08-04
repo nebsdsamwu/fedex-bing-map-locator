@@ -96,7 +96,7 @@ namespace BingMapWPFApplication.LocatorLogic
             request.Address.CountryCode = address.CountryCode;// "US";
         }
 
-        private static void BuildLocationsResponse(SearchLocationsReply reply)
+        private static SearchLocationsResponse BuildLocationsResponse(SearchLocationsReply reply)
         {
             SearchLocationsResponse response = new SearchLocationsResponse();
 
@@ -132,8 +132,10 @@ namespace BingMapWPFApplication.LocatorLogic
                     ShowLocation(location);
                 }
             }
+            return response;
         }
 
+        /* Original fedEx Code */
         private static SearchLocationsRequest CreateSearchLocationsRequest()
         {
             // Build the SearchLocationRequest

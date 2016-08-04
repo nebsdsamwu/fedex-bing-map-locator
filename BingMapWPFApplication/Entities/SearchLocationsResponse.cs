@@ -3,10 +3,66 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GlobalShipAddressWebServiceClient.LocationsServiceWebReference;
 
 namespace BingMapWPFApplication.Entities
 {
-    class SearchLocationsResponse
+    public class SearchLocationsResponse
     {
+        private string totalResultsAvailableField;
+
+        private string resultsReturnedField;
+
+        private Address formattedAddressField;
+
+        private AddressToLocationRelationshipDetail[] addressToLocationRelationshipsField;
+
+        public string TotalResultsAvailable
+        {
+            get
+            {
+                return this.totalResultsAvailableField;
+            }
+            set
+            {
+                this.totalResultsAvailableField = value;
+            }
+        }
+
+        public string ResultsReturned
+        {
+            get
+            {
+                return this.resultsReturnedField;
+            }
+            set
+            {
+                this.resultsReturnedField = value;
+            }
+        }
+
+        public Address FormattedAddress
+        {
+            get
+            {
+                return this.formattedAddressField;
+            }
+            set
+            {
+                this.formattedAddressField = value;
+            }
+        }
+
+        public AddressToLocationRelationshipDetail[] AddressToLocationRelationships
+        {
+            get
+            {
+                return this.addressToLocationRelationshipsField;
+            }
+            set
+            {
+                this.addressToLocationRelationshipsField = value;
+            }
+        }
     }
 }

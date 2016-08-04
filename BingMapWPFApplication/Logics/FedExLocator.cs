@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Services.Protocols;
 using GlobalShipAddressWebServiceClient.LocationsServiceWebReference;
+using BingMapWPFApplication.Entities;
 
 namespace BingMapWPFApplication.LocatorLogic
 {
@@ -84,6 +85,55 @@ namespace BingMapWPFApplication.LocatorLogic
             return request;
         }
 
+        private static void SetAddress(SearchLocationsRequest request, Address address)
+        {
+            /* MyTest */
+            request.Address = new Address();
+            request.Address.StreetLines = address.StreetLines;// new string[1] { "17560 Rowland St" };
+            request.Address.City = address.City;// "City of Industry";
+            request.Address.StateOrProvinceCode = address.StateOrProvinceCode;// "CA";
+            request.Address.PostalCode = address.PostalCode;// "91748";
+            request.Address.CountryCode = address.CountryCode;// "US";
+        }
+
+        private static void BuildLocationsResponse(SearchLocationsReply reply)
+        {
+            SearchLocationsResponse response = new SearchLocationsResponse();
+
+            Console.WriteLine("Total Locations Available: {0}", reply.TotalResultsAvailable);
+            Console.WriteLine("Locations Returned: {0}", reply.ResultsReturned);
+            Console.WriteLine();
+            if (reply.AddressToLocationRelationships != null)
+            {
+                foreach (AddressToLocationRelationshipDetail location in reply.AddressToLocationRelationships)
+                {
+                    if (location.MatchedAddress != null)
+                    {
+                        Console.WriteLine("Address information used for search");
+                        if (location.MatchedAddress.StreetLines != null)
+                        {
+                            foreach (String streetline in location.MatchedAddress.StreetLines)
+                            {
+                                Console.WriteLine("  Streetline: {0}", streetline);
+                            }
+                        }
+                        if (location.MatchedAddress.City != null) Console.WriteLine("  City: {0}", location.MatchedAddress.City);
+                        if (location.MatchedAddress.StateOrProvinceCode != null)
+                        {
+                            Console.WriteLine("  State or Province Code: {0}", location.MatchedAddress.StateOrProvinceCode);
+                        }
+                        if (location.MatchedAddress.PostalCode != null)
+                        {
+                            Console.WriteLine("  Postal Code: {0}", location.MatchedAddress.PostalCode);
+                        }
+                        if (location.MatchedAddress.CountryCode != null) Console.WriteLine("  Country Code: {0}", location.MatchedAddress.CountryCode);
+                    }
+                    Console.WriteLine();
+                    ShowLocation(location);
+                }
+            }
+        }
+
         private static SearchLocationsRequest CreateSearchLocationsRequest()
         {
             // Build the SearchLocationRequest
@@ -92,15 +142,15 @@ namespace BingMapWPFApplication.LocatorLogic
             /* MyTest */
             request.WebAuthenticationDetail = new WebAuthenticationDetail();
             request.WebAuthenticationDetail.UserCredential = new WebAuthenticationCredential();
-            request.WebAuthenticationDetail.UserCredential.Key = "Nvu0MsZ4wgWPTA84"; 
-            request.WebAuthenticationDetail.UserCredential.Password = "jJvWn79S9lFeuzPlYblL76hnR"; 
+            request.WebAuthenticationDetail.UserCredential.Key = "Nvu0MsZ4wgWPTA84";
+            request.WebAuthenticationDetail.UserCredential.Password = "jJvWn79S9lFeuzPlYblL76hnR";
             request.WebAuthenticationDetail.ParentCredential = new WebAuthenticationCredential();
-            request.WebAuthenticationDetail.ParentCredential.Key = "Nvu0MsZ4wgWPTA84"; 
-            request.WebAuthenticationDetail.ParentCredential.Password = "jJvWn79S9lFeuzPlYblL76hnR"; 
+            request.WebAuthenticationDetail.ParentCredential.Key = "Nvu0MsZ4wgWPTA84";
+            request.WebAuthenticationDetail.ParentCredential.Password = "jJvWn79S9lFeuzPlYblL76hnR";
             //
             request.ClientDetail = new ClientDetail();
-            request.ClientDetail.AccountNumber = "510087208"; 
-            request.ClientDetail.MeterNumber = "100298364"; 
+            request.ClientDetail.AccountNumber = "510087208";
+            request.ClientDetail.MeterNumber = "100298364";
             //
             request.TransactionDetail = new TransactionDetail();
             request.TransactionDetail.CustomerTransactionId = "***SearchLocation v2 Request using VC#***"; // This is a reference field for the customer.  Any value can be used and will be provided in the response.
@@ -129,17 +179,6 @@ namespace BingMapWPFApplication.LocatorLogic
             SetSortDetail(request);
             SetConstraints(request);
             return request;
-        }
-
-        private static void SetAddress(SearchLocationsRequest request, Address address)
-        {
-            /* MyTest */
-            request.Address = new Address();
-            request.Address.StreetLines = address.StreetLines;// new string[1] { "17560 Rowland St" };
-            request.Address.City = address.City;// "City of Industry";
-            request.Address.StateOrProvinceCode = address.StateOrProvinceCode;// "CA";
-            request.Address.PostalCode = address.PostalCode;// "91748";
-            request.Address.CountryCode = address.CountryCode;// "US";
         }
 
         private static void SetAddress(SearchLocationsRequest request)

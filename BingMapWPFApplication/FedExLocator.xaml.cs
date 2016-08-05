@@ -17,7 +17,8 @@ using System.Windows.Shapes;
 using System.Globalization;
 using Microsoft.Maps.MapControl.WPF;
 using Microsoft.Maps.MapControl.WPF.Design;
-
+using BingMapWPFApplication.LocatorLogic;
+using GlobalShipAddressWebServiceClient.LocationsServiceWebReference;
 
 namespace BingMapWPFApplication
 {
@@ -68,12 +69,19 @@ namespace BingMapWPFApplication
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            if (TargetZip.Trim() == "")
+            //if (TargetZip.Trim() == "")
+            //{
+            //    MessageBox.Show("Please enter a ZIP code");
+            //}
+            //else
             {
-                MessageBox.Show("Please enter a ZIP code");
-            }
-            else
-            {
+                Address address = new Address();
+                //address.StreetLines = new string[1] { "17560 Rowland St" };
+                //address.City = "City of Industry";
+                //address.StateOrProvinceCode = "CA";
+                address.PostalCode = "91748";
+                address.CountryCode = "US"; // CountryCode is required
+                Locator.Locate(address);
                 MessageBox.Show(TargetZip);
             }
         }

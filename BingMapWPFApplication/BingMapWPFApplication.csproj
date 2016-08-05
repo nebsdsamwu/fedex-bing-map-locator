@@ -58,7 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\SearchLocationsResponse.cs" />
-    <Compile Include="Logics\FedExLocator.cs" />
+    <Compile Include="Logics\Locator.cs" />
     <Compile Include="SwitchMapViews.xaml.cs">
       <DependentUpon>SwitchMapViews.xaml</DependentUpon>
     </Compile>

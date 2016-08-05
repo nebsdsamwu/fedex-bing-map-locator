@@ -9,7 +9,7 @@ using BingMapWPFApplication.Entities;
 
 namespace BingMapWPFApplication.LocatorLogic
 {
-    class FedExLocator
+    class Locator
     {
         public static SearchLocationsResponse Locate(Address address)
         {
@@ -78,7 +78,6 @@ namespace BingMapWPFApplication.LocatorLogic
             if (bUsePhoneNumber)
             {
                 request.LocationsSearchCriterion = LocationsSearchCriteriaType.PHONE_NUMBER;
-                //request.PhoneNumber = "9015551234"; // Search locations based on a phone number
                 request.PhoneNumber = "6262719700"; /* MyTest */
             }
             else
@@ -113,28 +112,6 @@ namespace BingMapWPFApplication.LocatorLogic
             {
                 foreach (AddressToLocationRelationshipDetail location in reply.AddressToLocationRelationships)
                 {
-                    if (location.MatchedAddress != null)
-                    {
-                        Console.WriteLine("Address information used for search");
-                        if (location.MatchedAddress.StreetLines != null)
-                        {
-                            foreach (String streetline in location.MatchedAddress.StreetLines)
-                            {
-                                Console.WriteLine("  Streetline: {0}", streetline);
-                            }
-                        }
-                        if (location.MatchedAddress.City != null) Console.WriteLine("  City: {0}", location.MatchedAddress.City);
-                        if (location.MatchedAddress.StateOrProvinceCode != null)
-                        {
-                            Console.WriteLine("  State or Province Code: {0}", location.MatchedAddress.StateOrProvinceCode);
-                        }
-                        if (location.MatchedAddress.PostalCode != null)
-                        {
-                            Console.WriteLine("  Postal Code: {0}", location.MatchedAddress.PostalCode);
-                        }
-                        if (location.MatchedAddress.CountryCode != null) Console.WriteLine("  Country Code: {0}", location.MatchedAddress.CountryCode);
-                    }
-                    Console.WriteLine();
                     ShowLocation(location);
                 }
 

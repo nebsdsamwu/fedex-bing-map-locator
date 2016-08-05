@@ -59,13 +59,13 @@
     </ApplicationDefinition>
     <Compile Include="Entities\SearchLocationsResponse.cs" />
     <Compile Include="Logics\Locator.cs" />
-    <Compile Include="SwitchMapViews.xaml.cs">
+    <Compile Include="PagesXAML\SwitchMapViews.xaml.cs">
       <DependentUpon>SwitchMapViews.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FedExLocator.xaml.cs">
+    <Compile Include="PagesXAML\FedExLocator.xaml.cs">
       <DependentUpon>FedExLocator.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="PagesXAML\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -73,15 +73,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="PagesXAML\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SwitchMapViews.xaml">
+    <Page Include="PagesXAML\SwitchMapViews.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="FedExLocator.xaml">
+    <Page Include="PagesXAML\FedExLocator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

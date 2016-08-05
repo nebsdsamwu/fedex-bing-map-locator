@@ -59,12 +59,19 @@
     </ApplicationDefinition>
     <Compile Include="Entities\SearchLocationsResponse.cs" />
     <Compile Include="Logics\Locator.cs" />
+    <Compile Include="PagesXAML\AskZIP.xaml.cs">
+      <DependentUpon>AskZIP.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PagesXAML\SwitchMapViews.xaml.cs">
       <DependentUpon>SwitchMapViews.xaml</DependentUpon>
     </Compile>
     <Compile Include="PagesXAML\FedExLocator.xaml.cs">
       <DependentUpon>FedExLocator.xaml</DependentUpon>
     </Compile>
+    <Page Include="PagesXAML\AskZIP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PagesXAML\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

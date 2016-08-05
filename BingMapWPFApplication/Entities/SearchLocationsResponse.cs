@@ -17,7 +17,18 @@ namespace BingMapWPFApplication.Entities
 
         private AddressToLocationRelationshipDetail[] addressToLocationRelationshipsField;
 
-        private ResponseStatus status;
+        public bool Succeeded { get; set; }
+
+        public List<Exception> Errors { get; set; }
+
+        public List<Notification> Notifications { get; set; }
+
+        public SearchLocationsResponse()
+        {
+            this.Succeeded = false;
+            this.Errors = new List<Exception>();
+            this.Notifications = new List<Notification>();
+        }
 
         public string TotalResultsAvailable
         {
@@ -70,7 +81,6 @@ namespace BingMapWPFApplication.Entities
 
     public class ResponseStatus
     {
-        public bool Succeeded { get; set; }
-        Exception Error { get; set; }
+
     }
 }

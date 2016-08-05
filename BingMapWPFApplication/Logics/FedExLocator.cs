@@ -11,31 +11,40 @@ namespace BingMapWPFApplication.LocatorLogic
 {
     class FedExLocator
     {
-        public static void Locate(Address address)
+        public static SearchLocationsResponse Locate(Address address)
         {
             SearchLocationsRequest request = CreateSearchLocationsRequest(address);
             LocationsService service = new LocationsService();
-
+            SearchLocationsResponse response = new SearchLocationsResponse();
             try
             {
                 // Call the Locations web service passing in a SearchLocationsRequest and returning a SearchLocationsReply
                 SearchLocationsReply reply = service.searchLocations(request);
                 if (reply.HighestSeverity == NotificationSeverityType.SUCCESS || reply.HighestSeverity == NotificationSeverityType.NOTE || reply.HighestSeverity == NotificationSeverityType.WARNING)
                 {
-                    ShowSearchLocationsReply(reply);
+                    response.Succeeded = true;
+                    FillLocationsResponse(reply, response);
+                    //ShowSearchLocationsReply(reply);
                 }
-                ShowNotifications(reply);
+                else
+                {
+                    response.Succeeded = false;
+                }
+                //ShowNotifications(reply);
             }
             catch (SoapException e)
             {
-                Console.WriteLine(e.Detail.InnerText);
+                response.Errors.Add(e);
+                response.Succeeded = false;
+                //Console.WriteLine(e.Detail.InnerText);
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                response.Errors.Add(e);
+                response.Succeeded = false;
+                //Console.WriteLine(e.Message);
             }
-            Console.WriteLine("Press any key to quit!");
-            Console.ReadKey();
+            return response;
         }
 
         private static SearchLocationsRequest CreateSearchLocationsRequest(Address address)
@@ -87,7 +96,6 @@ namespace BingMapWPFApplication.LocatorLogic
 
         private static void SetAddress(SearchLocationsRequest request, Address address)
         {
-            /* MyTest */
             request.Address = new Address();
             request.Address.StreetLines = address.StreetLines;// new string[1] { "17560 Rowland St" };
             request.Address.City = address.City;// "City of Industry";
@@ -96,13 +104,11 @@ namespace BingMapWPFApplication.LocatorLogic
             request.Address.CountryCode = address.CountryCode;// "US";
         }
 
-        private static SearchLocationsResponse BuildLocationsResponse(SearchLocationsReply reply)
+        private static void FillLocationsResponse(SearchLocationsReply reply, SearchLocationsResponse response)
         {
-            SearchLocationsResponse response = new SearchLocationsResponse();
-
-            Console.WriteLine("Total Locations Available: {0}", reply.TotalResultsAvailable);
-            Console.WriteLine("Locations Returned: {0}", reply.ResultsReturned);
-            Console.WriteLine();
+            response.TotalResultsAvailable = reply.TotalResultsAvailable;
+            response.ResultsReturned = reply.ResultsReturned;
+           
             if (reply.AddressToLocationRelationships != null)
             {
                 foreach (AddressToLocationRelationshipDetail location in reply.AddressToLocationRelationships)
@@ -131,8 +137,15 @@ namespace BingMapWPFApplication.LocatorLogic
                     Console.WriteLine();
                     ShowLocation(location);
                 }
+
+                if(reply.Notifications.Length > 0)
+                {
+                    foreach(var note in reply.Notifications)
+                    {
+                        response.Notifications.Add(note);
+                    }
+                }
             }
-            return response;
         }
 
         /* Original fedEx Code */

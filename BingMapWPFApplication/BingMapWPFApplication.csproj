@@ -7,8 +7,8 @@
     <ProjectGuid>{3687A9C0-953C-42CD-88AB-5BCCB27D6755}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WPFTestApplication</RootNamespace>
-    <AssemblyName>WPFTestApplication</AssemblyName>
+    <RootNamespace>BingMapWPFApplication</RootNamespace>
+    <AssemblyName>BingMapWPFApplication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

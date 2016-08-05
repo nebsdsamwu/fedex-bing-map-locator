@@ -81,7 +81,7 @@ namespace BingMapWPFApplication
                 //address.StateOrProvinceCode = "CA";
                 address.PostalCode = "91748";
                 address.CountryCode = "US"; // CountryCode is required
-                Locator.Locate(address);
+                LocatorBiz.Locate(address);
                 MessageBox.Show(TargetZip);
             }
         }

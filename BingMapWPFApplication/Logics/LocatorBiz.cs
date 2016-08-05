@@ -9,7 +9,7 @@ using BingMapWPFApplication.Entities;
 
 namespace BingMapWPFApplication.LocatorLogic
 {
-    class Locator
+    class LocatorBiz
     {
         public static SearchLocationsResponse Locate(Address address)
         {

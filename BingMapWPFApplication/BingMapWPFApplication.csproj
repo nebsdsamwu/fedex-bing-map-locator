@@ -58,7 +58,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Entities\SearchLocationsResponse.cs" />
-    <Compile Include="Logics\Locator.cs" />
+    <Compile Include="Logics\LocatorBiz.cs" />
     <Compile Include="PagesXAML\AskZIP.xaml.cs">
       <DependentUpon>AskZIP.xaml</DependentUpon>
     </Compile>

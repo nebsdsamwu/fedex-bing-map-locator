@@ -332,11 +332,13 @@ namespace LocationsSearchWebServiceClient
                 Console.WriteLine(" Source: {0}", notification.Source);
             }
         }
+
         private static bool usePropertyFile() //Set to true for common properties to be set with getProperty function.
         {
             //return getProperty("usefile").Equals("True");
             return false;// getProperty("usefile").Equals("True");
         }
+
         private static String getProperty(String propertyname) //Sets common properties for testing purposes.
         {
             try

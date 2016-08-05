@@ -32,16 +32,11 @@ namespace BingMapWPFApplication.PagesXAML
             //}
             //else
             {
-                FedExLocator fedexLocator = new FedExLocator();
+                FedExLocator fedexLocator = new FedExLocator(txtZip.Text);
                 fedexLocator.Show();
                 this.Close();
-                MessageBox.Show(TargetZip);
+                MessageBox.Show(txtZip.Text);
             }
-        }
-
-        public string TargetZip
-        {
-            get { return txtZip.Text; }
         }
     }
 }

@@ -29,9 +29,10 @@ namespace BingMapWPFApplication
     {
         LocationConverter locConvertor = new LocationConverter();
 
-        public FedExLocator()
+        public FedExLocator(string zipCode)
         {
             InitializeComponent();
+            //SearchByZip(zipCode);
             fedExLocatorMap.Focus();
             fedExLocatorMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewMap_ViewChangeOnFrame);
         }
@@ -67,6 +68,15 @@ namespace BingMapWPFApplication
             }
         }
 
+        private void SearchByZip(string zipCode)
+        {
+            Address address = new Address();
+            address.PostalCode = zipCode;
+            address.CountryCode = "US"; // CountryCode is required
+            LocatorBiz.Locate(address);
+            MessageBox.Show(zipCode);
+        }
+
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             //if (TargetZip.Trim() == "")
@@ -75,20 +85,11 @@ namespace BingMapWPFApplication
             //}
             //else
             {
-                Address address = new Address();
-                //address.StreetLines = new string[1] { "17560 Rowland St" };
-                //address.City = "City of Industry";
-                //address.StateOrProvinceCode = "CA";
-                address.PostalCode = "91748";
-                address.CountryCode = "US"; // CountryCode is required
-                LocatorBiz.Locate(address);
-                MessageBox.Show(TargetZip);
+                FedExLocator fedexLocator = new FedExLocator(txtTargetZip.Text);
+                fedexLocator.Show();
+                this.Close();
+                MessageBox.Show(txtTargetZip.Text);
             }
-        }
-
-        public string TargetZip
-        {
-            get { return txtTargetZip.Text; }
         }
     }
 }

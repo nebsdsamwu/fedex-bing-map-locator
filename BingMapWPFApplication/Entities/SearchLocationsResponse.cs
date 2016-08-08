@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GlobalShipAddressWebServiceClient.LocationsServiceWebReference;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace BingMapWPFApplication.Entities
 {
@@ -19,6 +20,8 @@ namespace BingMapWPFApplication.Entities
 
         public bool Succeeded { get; set; }
 
+        public List<Location> Locations { get; set; }
+
         public List<Exception> Errors { get; set; }
 
         public List<Notification> Notifications { get; set; }
@@ -27,6 +30,7 @@ namespace BingMapWPFApplication.Entities
         {
             this.Succeeded = false;
             this.Errors = new List<Exception>();
+            this.Locations = new List<Location>();
             this.Notifications = new List<Notification>();
         }
 
@@ -77,10 +81,5 @@ namespace BingMapWPFApplication.Entities
                 this.addressToLocationRelationshipsField = value;
             }
         }
-    }
-
-    public class ResponseStatus
-    {
-
     }
 }

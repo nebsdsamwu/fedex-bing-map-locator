@@ -25,6 +25,7 @@
             CredentialsProvider="axshD0XP67KzdsgEcfLd~-rhFs_Pfc5KdST0lT07Ceg~Akj3gmDa1sNNc-tsS8oNvciwZtjEGmtyoNF_zf3Udm0PDdZrYAvLN8Zmk279_BFW"           
             Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Padding="5"
             Center="39.3683,-95.2734,0.0000" ZoomLevel="4.000" AnimationLevel="None" Margin="0,0,0,44" >
+            <m:Pushpin Location="47.620574,-122.34942"/>
         </m:Map>
         <StackPanel Orientation="Horizontal" Opacity="0.7" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
             <Button x:Name="btnNorthAmerica" Click="ChangeMapView_Click" Tag="39.3683,-95.2734,0.0000 4.0000" Margin="5">

@@ -18,6 +18,7 @@ using System.Globalization;
 using Microsoft.Maps.MapControl.WPF;
 using Microsoft.Maps.MapControl.WPF.Design;
 using BingMapWPFApplication.LocatorLogic;
+using BingMapWPFApplication.Entities;
 using GlobalShipAddressWebServiceClient.LocationsServiceWebReference;
 
 namespace BingMapWPFApplication
@@ -32,9 +33,20 @@ namespace BingMapWPFApplication
         public FedExLocator(string zipCode)
         {
             InitializeComponent();
-            //SearchByZip(zipCode);
+            List<Location> fedexLocs = GetFedExLocations(zipCode);
             fedExLocatorMap.Focus();
+            AddPushpins(fedexLocs);
             fedExLocatorMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewMap_ViewChangeOnFrame);
+        }
+
+        private void AddPushpins(List<Location> fedexLocs)
+        {
+            foreach(Location loc in fedexLocs)
+            {
+                Pushpin pin = new Pushpin();
+                pin.Location = loc;
+                fedExLocatorMap.Children.Add(pin);
+            }
         }
 
         private void viewMap_ViewChangeOnFrame(object sender, MapEventArgs e)
@@ -68,22 +80,23 @@ namespace BingMapWPFApplication
             }
         }
 
-        private void SearchByZip(string zipCode)
+        private List<Location> GetFedExLocations(string zipCode)
         {
+            zipCode = "91748";                         // For test
             Address address = new Address();
             address.PostalCode = zipCode;
             address.CountryCode = "US"; // CountryCode is required
-            LocatorBiz.Locate(address);
-            MessageBox.Show(zipCode);
+            SearchLocationsResponse repsonse = LocatorBiz.Locate(address);
+            return repsonse.Locations;
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            //if (TargetZip.Trim() == "")
-            //{
-            //    MessageBox.Show("Please enter a ZIP code");
-            //}
-            //else
+            if (txtTargetZip.Text.Trim() == "")
+            {
+                MessageBox.Show("Please enter a ZIP code");
+            }
+            else
             {
                 FedExLocator fedexLocator = new FedExLocator(txtTargetZip.Text);
                 fedexLocator.Show();

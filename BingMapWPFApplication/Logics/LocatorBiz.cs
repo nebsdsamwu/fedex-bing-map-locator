@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Services.Protocols;
 using GlobalShipAddressWebServiceClient.LocationsServiceWebReference;
 using BingMapWPFApplication.Entities;
+using Microsoft.Maps.MapControl.WPF;
 
 namespace BingMapWPFApplication.LocatorLogic
 {
@@ -110,10 +111,21 @@ namespace BingMapWPFApplication.LocatorLogic
            
             if (reply.AddressToLocationRelationships != null)
             {
-                foreach (AddressToLocationRelationshipDetail location in reply.AddressToLocationRelationships)
+
+                List<DistanceAndLocationDetail> relateLocs = reply.AddressToLocationRelationships[0].DistanceAndLocationDetails.ToList();
+
+                foreach (DistanceAndLocationDetail loc in relateLocs)
                 {
-                    ShowLocation(location);
+                    Location fedexLoc = ConvertToMapLocation(loc);
+                    response.Locations.Add(fedexLoc);
                 }
+
+                //foreach (AddressToLocationRelationshipDetail location in reply.AddressToLocationRelationships)
+                //{
+                //    string coords = location.MatchedAddressGeographicCoordinates;
+                //    Location loc = ConvertToMapLocation(location);
+                //    response.Locations.Add(loc);
+                //}
 
                 if(reply.Notifications.Length > 0)
                 {
@@ -123,6 +135,42 @@ namespace BingMapWPFApplication.LocatorLogic
                     }
                 }
             }
+        }
+
+        private static Location ConvertToMapLocation(DistanceAndLocationDetail loc)
+        {
+            double[] coords = ParseToCoordinates(loc.LocationDetail.GeographicCoordinates);
+            Location mapLoc = new Location();
+            mapLoc.Longitude = coords[0];
+            mapLoc.Altitude = coords[1];
+            return mapLoc;
+        }
+
+        private static double[] ParseToCoordinates(string coordStr)
+        {            
+            if (coordStr.IndexOf("/") == coordStr.Length - 1)
+            {
+                coordStr = coordStr.Remove(coordStr.Length - 1);
+            }
+
+            int signIdx = -1;
+            if (coordStr.LastIndexOf("+") > 0)
+            {
+                signIdx = coordStr.LastIndexOf("+");
+            }
+            else if (coordStr.LastIndexOf("-") > 0)
+            {
+                signIdx = coordStr.LastIndexOf("-");
+            }
+
+            double[] coord = new double[2];
+            if (signIdx > 0)
+            {
+                 double.TryParse(coordStr.Substring(0, signIdx), out coord[0]);
+                 double.TryParse(coordStr.Substring(signIdx, coordStr.Length - signIdx), out coord[1]);
+            }
+
+            return coord;
         }
 
         /* Original fedEx Code */

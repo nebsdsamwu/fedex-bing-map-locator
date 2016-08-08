@@ -141,8 +141,8 @@ namespace BingMapWPFApplication.LocatorLogic
         {
             double[] coords = ParseToCoordinates(loc.LocationDetail.GeographicCoordinates);
             Location mapLoc = new Location();
-            mapLoc.Longitude = coords[0];
-            mapLoc.Altitude = coords[1];
+            mapLoc.Latitude = coords[0];
+            mapLoc.Longitude = coords[1];
             return mapLoc;
         }
 

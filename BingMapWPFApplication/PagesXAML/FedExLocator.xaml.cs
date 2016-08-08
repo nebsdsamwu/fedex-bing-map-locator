@@ -36,30 +36,21 @@ namespace BingMapWPFApplication
             List<Location> fedexLocs = GetFedExLocations(zipCode);
             fedExLocatorMap.Focus();
             AddPushpins(fedexLocs);
-            fedExLocatorMap.ViewChangeOnFrame += new EventHandler<MapEventArgs>(viewMap_ViewChangeOnFrame);
+            //fedExLocatorMap.SetView(center, zoom);
         }
 
         private void AddPushpins(List<Location> fedexLocs)
         {
-            foreach(Location loc in fedexLocs)
+            foreach (Location loc in fedexLocs)
             {
+                MapLayer layerPin = new MapLayer();
                 Pushpin pin = new Pushpin();
                 pin.Location = loc;
+                MapLayer.SetPosition(pin, new Location(loc.Latitude, loc.Longitude));
                 fedExLocatorMap.Children.Add(pin);
             }
         }
 
-        private void viewMap_ViewChangeOnFrame(object sender, MapEventArgs e)
-        {
-            Map map = sender as Map;
-
-            if (map != null)
-            {
-                Location mapCenter = map.Center;
-                txtLatitude.Text = string.Format(CultureInfo.InvariantCulture, "{0:F5}", mapCenter.Latitude);
-                txtLongitude.Text = string.Format(CultureInfo.InvariantCulture, "{0:F5}", mapCenter.Longitude);
-            }
-        }
 
         private void ChangeMapView_Click(object sender, RoutedEventArgs e)
         {

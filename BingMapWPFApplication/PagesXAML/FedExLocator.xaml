@@ -25,37 +25,7 @@
             CredentialsProvider="axshD0XP67KzdsgEcfLd~-rhFs_Pfc5KdST0lT07Ceg~Akj3gmDa1sNNc-tsS8oNvciwZtjEGmtyoNF_zf3Udm0PDdZrYAvLN8Zmk279_BFW"           
             Grid.Column="0" Grid.Row="0" Grid.RowSpan="4" Padding="5"
             Center="39.3683,-95.2734,0.0000" ZoomLevel="4.000" AnimationLevel="None" Margin="0,0,0,44" >
-            <m:Pushpin Location="47.620574,-122.34942"/>
         </m:Map>
-        <StackPanel Orientation="Horizontal" Opacity="0.7" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
-            <Button x:Name="btnNorthAmerica" Click="ChangeMapView_Click" Tag="39.3683,-95.2734,0.0000 4.0000" Margin="5">
-                <TextBlock>North America</TextBlock>
-            </Button>
-            <Button x:Name="btnNewYork" Click="ChangeMapView_Click" Tag="40.7199,-74.0030,0.0000 12.0000" Margin="5">
-                <TextBlock>New York</TextBlock>
-            </Button>
-            <Button x:Name="btnLosAngeles" Click="ChangeMapView_Click" Tag="34.0522,-118.2437,0.0000 13.0000" Margin="5">
-                <TextBlock>Los Angeles</TextBlock>
-            </Button>
-            <Button x:Name="btnSanFrancisco" Click="ChangeMapView_Click" Tag="37.6801,-122.3395,0.0000 11.0000" Margin="5">
-                <TextBlock>San Francisco</TextBlock>
-            </Button>
-            <Button x:Name="btnVancouver" Click="ChangeMapView_Click" Tag="49.2797,-123.1329,0.0000 13.0000" Margin="5">
-                <TextBlock>Vancouver</TextBlock>
-            </Button>
-            <ComboBox SelectionChanged="AnimationLevel_SelectionChanged" SelectedIndex="1" Margin="10" Height="20" Width="56">
-                <ComboBoxItem Content="None" />
-                <ComboBoxItem Content="Full" />
-            </ComboBox>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Opacity="0.9" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center">
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" Opacity="0.9" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center">
-            <TextBlock Text="Latitude: " Padding="5" Foreground="White"/>
-            <TextBox x:Name="txtLatitude" Text="" IsReadOnly="true" Background="LightGray"/>
-            <TextBlock Text="Longitude: " Padding="5" Foreground="White"/>
-            <TextBox x:Name="txtLongitude" Text="" IsReadOnly="true" Background="LightGray"/>
-        </StackPanel>
         <Grid Grid.Row="3" Background="{StaticResource brushWatermarkBackground}" Style="{StaticResource EntryFieldStyle}" Height="44" Margin="20,6,10,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

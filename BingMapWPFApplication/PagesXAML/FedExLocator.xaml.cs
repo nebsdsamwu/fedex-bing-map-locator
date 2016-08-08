@@ -41,9 +41,9 @@ namespace BingMapWPFApplication
 
         private void AddPushpins(List<Location> fedexLocs)
         {
+            MapLayer layerPin = new MapLayer();
             foreach (Location loc in fedexLocs)
             {
-                MapLayer layerPin = new MapLayer();
                 Pushpin pin = new Pushpin();
                 pin.Location = loc;
                 MapLayer.SetPosition(pin, new Location(loc.Latitude, loc.Longitude));

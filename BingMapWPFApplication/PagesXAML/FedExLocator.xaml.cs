@@ -36,7 +36,7 @@ namespace BingMapWPFApplication
             List<Location> fedexLocs = GetFedExLocations(zipCode);
             fedExLocatorMap.Focus();
             AddPushpins(fedexLocs);
-            fedExLocatorMap.SetView(fedexLocs.First(), 12);
+            fedExLocatorMap.SetView(fedexLocs.First(), 12); // zoom in
         }
 
         private void AddPushpins(List<Location> fedexLocs)

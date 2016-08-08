@@ -34,9 +34,16 @@ namespace BingMapWPFApplication
         {
             InitializeComponent();
             List<Location> fedexLocs = GetFedExLocations(zipCode);
-            fedExLocatorMap.Focus();
-            AddPushpins(fedexLocs);
-            fedExLocatorMap.SetView(fedexLocs.First(), 12); // zoom in
+            if (fedexLocs.Count > 0)
+            {
+                fedExLocatorMap.Focus();
+                AddPushpins(fedexLocs);
+                fedExLocatorMap.SetView(fedexLocs.First(), 12); // zoom in
+            }
+            else
+            {
+                MessageBox.Show("Unable to find any FedEx location. \nPlease try another ZIP code.");
+            }
         }
 
         private void AddPushpins(List<Location> fedexLocs)
@@ -73,7 +80,7 @@ namespace BingMapWPFApplication
 
         private List<Location> GetFedExLocations(string zipCode)
         {
-            zipCode = "91748";                         // For test
+            //zipCode = "91748";                         // For test
             Address address = new Address();
             address.PostalCode = zipCode;
             address.CountryCode = "US"; // CountryCode is required
@@ -91,8 +98,8 @@ namespace BingMapWPFApplication
             {
                 FedExLocator fedexLocator = new FedExLocator(txtTargetZip.Text);
                 fedexLocator.Show();
+                fedexLocator.Focus();
                 this.Close();
-                MessageBox.Show(txtTargetZip.Text);
             }
         }
     }

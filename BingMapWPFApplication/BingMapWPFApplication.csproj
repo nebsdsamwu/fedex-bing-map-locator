@@ -62,9 +62,6 @@
     <Compile Include="PagesXAML\AskZIP.xaml.cs">
       <DependentUpon>AskZIP.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PagesXAML\SwitchMapViews.xaml.cs">
-      <DependentUpon>SwitchMapViews.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PagesXAML\FedExLocator.xaml.cs">
       <DependentUpon>FedExLocator.xaml</DependentUpon>
     </Compile>
@@ -84,10 +81,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="PagesXAML\SwitchMapViews.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="PagesXAML\FedExLocator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

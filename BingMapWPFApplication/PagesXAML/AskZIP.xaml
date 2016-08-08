@@ -1,10 +1,10 @@
 ﻿<Window x:Class="BingMapWPFApplication.PagesXAML.AskZIP"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Ask Input" Height="186.957" Width="268.478">
+        Title="Input" Height="186.957" Width="268.478">
     <Grid>
-        <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txtZip" Margin="52,35,50,85" Width="84" Height="20"/>
-        <TextBlock IsHitTestVisible="False" Text="  ZIP Code" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="52,35,50,85" Foreground="DarkGray" Width="84" Height="20">
+        <TextBox VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="txtZip" Margin="48,35,48,85" Width="88" Height="20"/>
+        <TextBlock IsHitTestVisible="False" Text=" Enter ZIP Code " VerticalAlignment="Center" HorizontalAlignment="Center" Margin="48,35,48,85" Foreground="DarkGray" Width="88" Height="20">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>

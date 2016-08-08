@@ -35,7 +35,6 @@ namespace BingMapWPFApplication.PagesXAML
                 FedExLocator fedexLocator = new FedExLocator(txtZip.Text);
                 fedexLocator.Show();
                 this.Close();
-                MessageBox.Show(txtZip.Text);
             }
         }
     }

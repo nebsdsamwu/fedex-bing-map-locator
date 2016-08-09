@@ -26,12 +26,15 @@ namespace BingMapWPFApplication.Entities
 
         public List<Notification> Notifications { get; set; }
 
+        public List<GeoMapLocation> GeoMapLocations { get; set; }
+
         public SearchLocationsResponse()
         {
             this.Succeeded = false;
             this.Errors = new List<Exception>();
             this.Locations = new List<Location>();
             this.Notifications = new List<Notification>();
+            this.GeoMapLocations = new List<GeoMapLocation>();
         }
 
         public string TotalResultsAvailable

@@ -33,12 +33,14 @@ namespace BingMapWPFApplication
         public FedExLocator(string zipCode)
         {
             InitializeComponent();
-            List<Location> fedexLocs = GetFedExLocations(zipCode);
-            if (fedexLocs.Count > 0)
+            SearchLocationsResponse locsResp = GetFedExLocations(zipCode);
+            if (locsResp.GeoMapLocations.Count > 0)
             {
                 fedExLocatorMap.Focus();
-                AddPushpins(fedexLocs);
-                fedExLocatorMap.SetView(fedexLocs.First(), 12); // zoom in
+                AddPushpins(locsResp);
+                GeoMapLocation firstLoc = locsResp.GeoMapLocations.First();
+                Location center = new Location(firstLoc.Latitude, firstLoc.Longitude);
+                fedExLocatorMap.SetView(center, 12); // zoom in to first location
             }
             else
             {
@@ -46,22 +48,21 @@ namespace BingMapWPFApplication
             }
         }
 
-        private void AddPushpins(List<Location> fedexLocs)
+        private void AddPushpins(SearchLocationsResponse locsResp)
         {
             MapLayer layerPin = new MapLayer();
             int idx = 0;
-            foreach (Location loc in fedexLocs)
+            foreach (GeoMapLocation loc in locsResp.GeoMapLocations)
             {
                 idx += 1;
                 Pushpin pin = new Pushpin();
-                pin.Location = loc;
+                pin.Location = new Location(loc.Latitude, loc.Longitude);
                 pin.Content = idx;
                 pin.ToolTip = "ToolTipTest: " + idx;
                 MapLayer.SetPosition(pin, new Location(loc.Latitude, loc.Longitude));
                 fedExLocatorMap.Children.Add(pin);
             }
         }
-
 
         private void ChangeMapView_Click(object sender, RoutedEventArgs e)
         {
@@ -82,14 +83,14 @@ namespace BingMapWPFApplication
             }
         }
 
-        private List<Location> GetFedExLocations(string zipCode)
+        private SearchLocationsResponse GetFedExLocations(string zipCode)
         {
             zipCode = "91748";                         // For test
             Address address = new Address();
             address.PostalCode = zipCode;
             address.CountryCode = "US"; // CountryCode is required
             SearchLocationsResponse repsonse = LocatorBiz.Locate(address);
-            return repsonse.Locations;
+            return repsonse;
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)

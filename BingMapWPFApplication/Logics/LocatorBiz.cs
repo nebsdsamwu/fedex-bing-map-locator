@@ -116,6 +116,9 @@ namespace BingMapWPFApplication.LocatorLogic
 
                 foreach (DistanceAndLocationDetail loc in relateLocs)
                 {
+                    GeoMapLocation gmLoc = ConvertToGeoMapLocation(loc);
+                    response.GeoMapLocations.Add(gmLoc);
+
                     Location fedexLoc = ConvertToMapLocation(loc);
                     response.Locations.Add(fedexLoc);
                 }
@@ -130,19 +133,22 @@ namespace BingMapWPFApplication.LocatorLogic
             }
         }
 
+        private static GeoMapLocation ConvertToGeoMapLocation(DistanceAndLocationDetail loc)
+        {
+            double[] coords = ParseToCoordinates(loc.LocationDetail.GeographicCoordinates);
+            GeoMapLocation gmLoc = new GeoMapLocation();
+            gmLoc.Latitude = coords[0];
+            gmLoc.Longitude = coords[1];
+            gmLoc.LocationInfo = loc.LocationDetail;
+            return gmLoc;
+        }
+
         private static Location ConvertToMapLocation(DistanceAndLocationDetail loc)
         {
             double[] coords = ParseToCoordinates(loc.LocationDetail.GeographicCoordinates);
-            GeoMapLocation geoMap = new GeoMapLocation();
-
             Location mapLoc = new Location();
             mapLoc.Latitude = coords[0];
             mapLoc.Longitude = coords[1];
-
-            geoMap.Latitude = coords[0];
-            geoMap.Longitude = coords[1];
-            geoMap.LocationInfo = loc.LocationDetail;
-
             return mapLoc;
         }
 

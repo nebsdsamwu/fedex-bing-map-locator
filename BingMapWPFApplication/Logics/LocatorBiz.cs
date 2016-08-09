@@ -132,11 +132,17 @@ namespace BingMapWPFApplication.LocatorLogic
 
         private static Location ConvertToMapLocation(DistanceAndLocationDetail loc)
         {
-            LocationDetail locDetail = loc.LocationDetail; // NEED TO PASS THIS Obj for Address Detail!! 
             double[] coords = ParseToCoordinates(loc.LocationDetail.GeographicCoordinates);
+            GeoMapLocation geoMap = new GeoMapLocation();
+
             Location mapLoc = new Location();
             mapLoc.Latitude = coords[0];
             mapLoc.Longitude = coords[1];
+
+            geoMap.Latitude = coords[0];
+            geoMap.Longitude = coords[1];
+            geoMap.LocationInfo = loc.LocationDetail;
+
             return mapLoc;
         }
 

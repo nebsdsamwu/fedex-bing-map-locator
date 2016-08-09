@@ -7,9 +7,10 @@ using GlobalShipAddressWebServiceClient.LocationsServiceWebReference;
 
 namespace BingMapWPFApplication.Entities
 {
-    class GeoMapLocation : LocationDetail
+    public class GeoMapLocation
     {
         public double Latitude { get; set; }
-        public double Longitude { get; set; } 
+        public double Longitude { get; set; }
+        public LocationDetail LocationInfo { get; set; }
     }
 }

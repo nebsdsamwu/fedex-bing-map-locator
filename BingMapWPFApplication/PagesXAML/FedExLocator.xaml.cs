@@ -49,10 +49,14 @@ namespace BingMapWPFApplication
         private void AddPushpins(List<Location> fedexLocs)
         {
             MapLayer layerPin = new MapLayer();
+            int idx = 0;
             foreach (Location loc in fedexLocs)
             {
+                idx += 1;
                 Pushpin pin = new Pushpin();
                 pin.Location = loc;
+                pin.Content = idx;
+                pin.ToolTip = "ToolTipTest: " + idx;
                 MapLayer.SetPosition(pin, new Location(loc.Latitude, loc.Longitude));
                 fedExLocatorMap.Children.Add(pin);
             }

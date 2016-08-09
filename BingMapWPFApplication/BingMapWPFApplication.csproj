@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\GeoMapLocation.cs" />
     <Compile Include="Entities\SearchLocationsResponse.cs" />
     <Compile Include="Logics\LocatorBiz.cs" />
     <Compile Include="PagesXAML\AskZIP.xaml.cs">

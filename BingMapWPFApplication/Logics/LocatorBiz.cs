@@ -120,13 +120,6 @@ namespace BingMapWPFApplication.LocatorLogic
                     response.Locations.Add(fedexLoc);
                 }
 
-                //foreach (AddressToLocationRelationshipDetail location in reply.AddressToLocationRelationships)
-                //{
-                //    string coords = location.MatchedAddressGeographicCoordinates;
-                //    Location loc = ConvertToMapLocation(location);
-                //    response.Locations.Add(loc);
-                //}
-
                 if(reply.Notifications.Length > 0)
                 {
                     foreach(var note in reply.Notifications)
@@ -139,6 +132,7 @@ namespace BingMapWPFApplication.LocatorLogic
 
         private static Location ConvertToMapLocation(DistanceAndLocationDetail loc)
         {
+            LocationDetail locDetail = loc.LocationDetail; // NEED TO PASS THIS Obj for Address Detail!! 
             double[] coords = ParseToCoordinates(loc.LocationDetail.GeographicCoordinates);
             Location mapLoc = new Location();
             mapLoc.Latitude = coords[0];
@@ -230,14 +224,6 @@ namespace BingMapWPFApplication.LocatorLogic
             request.Address.StateOrProvinceCode = "CA";
             request.Address.PostalCode = "91748";
             request.Address.CountryCode = "US";
-
-            /* Orgin */
-            //request.Address = new Address();
-            //request.Address.StreetLines = new string[1] { "Address Line 1" };
-            //request.Address.City = "Collierville";
-            //request.Address.StateOrProvinceCode = "TN";
-            //request.Address.PostalCode = "38017";
-            //request.Address.CountryCode = "US";
         }
 
         private static void SetSortDetail(SearchLocationsRequest request)

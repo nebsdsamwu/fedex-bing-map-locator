@@ -80,7 +80,7 @@ namespace BingMapWPFApplication
 
         private List<Location> GetFedExLocations(string zipCode)
         {
-            //zipCode = "91748";                         // For test
+            zipCode = "91748";                         // For test
             Address address = new Address();
             address.PostalCode = zipCode;
             address.CountryCode = "US"; // CountryCode is required

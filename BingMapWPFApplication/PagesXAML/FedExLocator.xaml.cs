@@ -58,10 +58,33 @@ namespace BingMapWPFApplication
                 Pushpin pin = new Pushpin();
                 pin.Location = new Location(loc.Latitude, loc.Longitude);
                 pin.Content = idx;
-                pin.ToolTip = "ToolTipTest: " + idx;
-                MapLayer.SetPosition(pin, new Location(loc.Latitude, loc.Longitude));
+                string addressStr = ComposeAddress(loc);
+                pin.ToolTip = addressStr;
+                MapLayer.SetPosition(pin, pin.Location);
                 fedExLocatorMap.Children.Add(pin);
             }
+        }
+
+        private string ComposeAddress(GeoMapLocation loc)
+        {
+            Address addr = loc.LocationInfo.LocationContactAndAddress.Address;
+
+            string streetStr = "";
+            if (addr.StreetLines.Length > 0)
+            {
+                for (int i = 0; i < addr.StreetLines.Length; i++)
+                {
+                    streetStr += addr.StreetLines[i] + "\n";
+                }
+            }
+
+            string addressStr = streetStr 
+                              + addr.City + "\n"
+                              + addr.StateOrProvinceCode + "\n"
+                              + addr.PostalCode + "\n"
+                              + addr.CountryCode + "\n";
+
+            return addressStr;
         }
 
         private void ChangeMapView_Click(object sender, RoutedEventArgs e)

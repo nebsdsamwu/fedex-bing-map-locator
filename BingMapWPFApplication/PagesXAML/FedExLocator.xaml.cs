@@ -70,8 +70,9 @@ namespace BingMapWPFApplication
 
         private void PushpinClicked(object sender, MouseEventArgs e)
         {
+            e.Handled = true;
             Pushpin pin = (Pushpin)sender;
-            MessageBox.Show(pin.Content.ToString());
+            MessageBox.Show(pin.ToolTip.ToString());
         }
 
         private string ComposeAddress(GeoMapLocation loc)
@@ -117,7 +118,7 @@ namespace BingMapWPFApplication
 
         private SearchLocationsResponse GetFedExLocations(string zipCode)
         {
-            zipCode = "91748";                         // For test
+            zipCode = zipCode == "" ? "91748" : zipCode;                         // For test
             Address address = new Address();
             address.PostalCode = zipCode;
             address.CountryCode = "US"; // CountryCode is required

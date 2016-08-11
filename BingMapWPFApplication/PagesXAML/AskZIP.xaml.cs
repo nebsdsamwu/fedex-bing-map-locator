@@ -26,16 +26,9 @@ namespace BingMapWPFApplication.PagesXAML
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            //if (TargetZip.Trim() == "")
-            //{
-            //    MessageBox.Show("Please enter a ZIP code");
-            //}
-            //else
-            {
-                FedExLocator fedexLocator = new FedExLocator(txtZip.Text);
-                fedexLocator.Show();
-                this.Close();
-            }
+            FedExLocator fedexLocator = new FedExLocator(txtZip.Text);
+            fedexLocator.Show();
+            this.Close();
         }
     }
 }

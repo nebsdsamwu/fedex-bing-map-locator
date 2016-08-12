@@ -60,9 +60,7 @@ namespace BingMapWPFApplication
                 pin.Content = idx;
                 string addressStr = ComposeAddress(loc);
                 pin.ToolTip = addressStr;
-
                 pin.MouseDown += new MouseButtonEventHandler(PushpinClicked);
-
                 MapLayer.SetPosition(pin, pin.Location);
                 fedExLocatorMap.Children.Add(pin);
             }

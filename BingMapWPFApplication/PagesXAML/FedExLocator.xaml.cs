@@ -41,11 +41,21 @@ namespace BingMapWPFApplication
                 GeoMapLocation firstLoc = locsResp.GeoMapLocations.First();
                 Location center = new Location(firstLoc.Latitude, firstLoc.Longitude);
                 fedExLocatorMap.SetView(center, 12); // zoom in to first location
+                fedExLocatorMap.MouseRightButtonDown += new MouseButtonEventHandler(RetriveZipCode);
             }
             else
             {
                 MessageBox.Show("Unable to find any FedEx location. \nPlease try another ZIP code.");
             }
+        }
+
+        private void RetriveZipCode(object sender, MouseEventArgs e)
+        {
+            e.Handled = true;
+            Point mousePosition = e.GetPosition(this);
+            Location loc = fedExLocatorMap.ViewportPointToLocation(mousePosition);
+            
+            // Via location to get zip code.
         }
 
         private void AddPushpins(SearchLocationsResponse locsResp)
